@@ -10,6 +10,7 @@ import java.io.IOException;
 import javax.swing.JFrame;
 
 import game.Main;
+import game.Entities.Player.Player;
 import game.Images.BufferedImgeLoader;
 import game.Images.SpriteSheet;
 
@@ -24,7 +25,8 @@ public class Game extends Canvas implements Runnable {
 		
 	private BufferedImage background;
 	private BufferedImage spritesheet;
-	private BufferedImage player;
+	
+	private Player player;
 	
 	public Game() {
 
@@ -116,14 +118,12 @@ public class Game extends Canvas implements Runnable {
 			spritesheet =  loader.loadImage("spritesheet.png");
 		} catch (IOException e) {e.printStackTrace();}
 		
-		SpriteSheet ss = new SpriteSheet(spritesheet);
-		player = ss.grabImage(1, 1);
-		
+		player = new Player(this, 100, 100);
 	}
 	
 	//FUNCAO RESPONSÁVEL POR ATUALIZAR O JOGO
 	private void tick() {
-		
+		player.tick();
 	}
 	
 	//FUNCAO RESPOSÁVEL POR DESENHAR
@@ -139,11 +139,16 @@ public class Game extends Canvas implements Runnable {
 		
 		//DESENHO
 		g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
-		g.drawImage(player, 100, 100,this);
+		
+		player.render(g);
 		
 		g.dispose();
 		bs.show();
 		
+	}
+	
+	public BufferedImage getSpriteSheet() {
+		return spritesheet;
 	}
 
 }
