@@ -13,7 +13,7 @@ import javax.swing.JFrame;
 import game.Main;
 import game.Entities.Player.Player;
 import game.Images.BufferedImgeLoader;
-import game.Images.SpriteSheet;
+
 
 public class Game extends Canvas implements Runnable {
 
