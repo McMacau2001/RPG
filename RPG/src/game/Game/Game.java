@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 
 import game.Main;
 import game.Entities.Player.Player;
-import game.Images.BufferedImgeLoader;
+import game.Images.BufferedImageLoader;
 
 
 public class Game extends Canvas implements Runnable {
@@ -112,17 +112,16 @@ public class Game extends Canvas implements Runnable {
 
 	//FUNCAO RESPONSÁVEL POR INCIAR O JOGO
 	private void init() {
-		requestFocus();
+		
 		background = new BufferedImage(Main.WIDTH, Main.HEIGHT,BufferedImage.TYPE_INT_RGB);
 		
-		BufferedImgeLoader loader = new BufferedImgeLoader();
-		try {
-			spritesheet =  loader.loadImage("spritesheet.png");
-		} catch (IOException e) {e.printStackTrace();}
+		BufferedImageLoader loader = new BufferedImageLoader();
+		spritesheet =  loader.loadImage("spritesheet.png");
 		
 		addKeyListener(new GameKeyInput(this));
 		
 		player = new Player(this, 200, 100);
+		requestFocus();
 	}
 	
 	//FUNCAO RESPONSÁVEL POR ATUALIZAR O JOGO
@@ -164,13 +163,13 @@ public class Game extends Canvas implements Runnable {
 		int key = e.getKeyCode();
 		
 		if(key == KeyEvent.VK_RIGHT)
-			player.moveX(3);
+			player.moveX(2);
 		else if(key == KeyEvent.VK_LEFT)
-			player.moveX(-3);
+			player.moveX(-2);
 		else if(key == KeyEvent.VK_DOWN)
-			player.moveY(3);
+			player.moveY(2);
 		else if(key == KeyEvent.VK_UP)
-			player.moveY(-3);
+			player.moveY(-2);
 	}
 	
 	//FUNCAO CHAMADA QUANDO UMA TECLA DEIXA DE SER PRESSIONADA
