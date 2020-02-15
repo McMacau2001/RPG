@@ -37,7 +37,7 @@ public class Game extends Canvas implements Runnable {
 		setMaximumSize(d);
 		setMinimumSize(d);
 		
-		//JANELA RESPONSAL POR MOSTRAR O JOGO
+		//JANELA RESPONSAVEL POR MOSTRAR O JOGO
 		frame = new JFrame(Main.TITLE);
 		frame.add(this);
 		frame.pack();
@@ -122,7 +122,7 @@ public class Game extends Canvas implements Runnable {
 		
 		addKeyListener(new GameKeyInput(this));
 		
-		player = new Player(this, 100, 100);
+		player = new Player(this, 200, 100);
 	}
 	
 	//FUNCAO RESPONSÁVEL POR ATUALIZAR O JOGO
@@ -142,10 +142,12 @@ public class Game extends Canvas implements Runnable {
 		Graphics g = bs.getDrawGraphics();
 		
 		//DESENHO
+		//
+		
 		g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
-		
 		player.render(g);
-		
+		//
+	
 		g.dispose();
 		bs.show();
 		

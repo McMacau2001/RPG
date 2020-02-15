@@ -16,15 +16,13 @@ public final class Player implements Entity {
 	private double vely;
 	
 	private BufferedImage image;
-	
 
-	
 	public Player(Game game, double x, double y) {
 		this.x = x;
 		this.y = y;
 		
 		SpriteSheet ss = new SpriteSheet(game.getSpriteSheet());
-		image = ss.grabImage(1, 1);
+		image = ss.grabImage(2, 1);
 	}
 
 	@Override
