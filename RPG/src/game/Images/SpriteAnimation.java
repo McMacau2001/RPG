@@ -8,7 +8,6 @@ public class SpriteAnimation {
 	private int speed;
 	private int frames;
 	
-
 	private int index = 0;
 	private int count = 0;
 
@@ -17,22 +16,27 @@ public class SpriteAnimation {
 	
 	private boolean active;
 
-	public SpriteAnimation(Sprite sprite, int speed) {
+	public SpriteAnimation(SpriteImage sprite, int speed) {
 		this.speed = speed;
 		
 		frames = sprite.getFrames();
 		images = sprite.getImages();
+		
+		currentImage = images[0];
 		active = true;
 	}
 
 	public void nextFrame() {
-		if(!active && count == 0)return;
-		
 		currentImage = images[count];
+		
+		if(!active && count == 0) 
+			return;
+		
 		count++;
 
 		if (count >= frames - 1) 
 			count = 0;
+		
 	}
 
 	public void runAnimation() {
@@ -45,13 +49,12 @@ public class SpriteAnimation {
 
 	}
 
-
 	public void drawAnimation(Graphics g, double x, double y, int offset) {
 		g.drawImage(currentImage, (int) x - offset, (int) y, null);
 	}
 	
 	
-	public void setSprite(Sprite sprite) {
+	public void setSprite(SpriteImage sprite) {
 		frames = sprite.getFrames();
 		images = sprite.getImages();
 		

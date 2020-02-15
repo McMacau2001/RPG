@@ -8,7 +8,7 @@ import java.io.IOException;
 import game.Entities.Entity;
 import game.Game.Game;
 import game.Images.BufferedImageLoader;
-import game.Images.Sprite;
+import game.Images.SpriteImage;
 import game.Images.SpriteAnimation;
 import game.Images.SpriteSheet;
 
@@ -20,12 +20,10 @@ public final class Player implements Entity {
 	private double velx;
 	private double vely;
 	
-	private BufferedImage image;
-	
-	private Sprite right;
-	private Sprite left;
-	private Sprite down;
-	private Sprite up;
+	private SpriteImage right;
+	private SpriteImage left;
+	private SpriteImage down;
+	private SpriteImage up;
 	
 	private SpriteAnimation animation;
 
@@ -33,16 +31,13 @@ public final class Player implements Entity {
 		this.x = x;
 		this.y = y;
 		
-		SpriteSheet ss = new SpriteSheet(game.getSpriteSheet());
-		image = ss.grabImage(2, 1);
-		
 		//CARREGAR OS SPRITES
 		BufferedImageLoader loader = new BufferedImageLoader();
 		
-		right = new Sprite(loader.loadImage("walking_right.png"),3);
-		left = new Sprite(loader.loadImage("walking_left.png"),3);
-		down = new Sprite(loader.loadImage("walking_down.png"),3);
-		up = new Sprite(loader.loadImage("walking_up.png"),3);
+		right = new SpriteImage(loader.loadImage("player/walking_right.png"),3);
+		left = new SpriteImage(loader.loadImage("player/walking_left.png"),3);
+		down = new SpriteImage(loader.loadImage("player/walking_down.png"),3);
+		up = new SpriteImage(loader.loadImage("player/walking_up.png"),3);
 		
 		animation = new SpriteAnimation(down, 4);
 		animation.setActive(false);
@@ -70,8 +65,6 @@ public final class Player implements Entity {
 
 	@Override
 	public void render(Graphics g) {
-		//g.drawImage(image, (int)x, (int)y, null);
-		
 		Graphics2D g2d = (Graphics2D)g;
 		g2d.scale(2, 2);
 		animation.drawAnimation(g, (int)x, (int)y, 0);

@@ -141,10 +141,10 @@ public class Game extends Canvas implements Runnable {
 		Graphics g = bs.getDrawGraphics();
 		
 		//DESENHO
-		//
-		
+
 		g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
 		player.render(g);
+		
 		//
 	
 		g.dispose();

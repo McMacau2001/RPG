@@ -2,13 +2,13 @@ package game.Images;
 
 import java.awt.image.BufferedImage;
 
-public class Sprite {
+public class SpriteImage {
 	
 	private BufferedImage[] images;
 	private int frames;
 	private BufferedImage image;
 	
-	public Sprite(BufferedImage image, int frames) {
+	public SpriteImage(BufferedImage image, int frames) {
 		this.image = image;
 		this.frames = frames;
 		this.images = new BufferedImage[frames];
