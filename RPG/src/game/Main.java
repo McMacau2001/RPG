@@ -9,6 +9,8 @@ public class Main {
 	public static final int SCALE = 2;
 	public static final String TITLE = "RPG Game";
 	
+	public static final int SPRITESIZE = 64;
+	
 	/*
 	 * FUNÇÃO RESPNSÁVEL POR INCIAR O PROGRAMA 
 	 */

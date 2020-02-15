@@ -5,10 +5,13 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 import javax.swing.JFrame;
 
 import game.Main;
+import game.Images.BufferedImgeLoader;
+import game.Images.SpriteSheet;
 
 public class Game extends Canvas implements Runnable {
 
@@ -20,6 +23,8 @@ public class Game extends Canvas implements Runnable {
 	private Thread thread;
 		
 	private BufferedImage background;
+	private BufferedImage spritesheet;
+	private BufferedImage player;
 	
 	public Game() {
 
@@ -38,13 +43,11 @@ public class Game extends Canvas implements Runnable {
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 		
-		//OUTROS
-		background = new BufferedImage(Main.WIDTH, Main.HEIGHT,BufferedImage.TYPE_INT_RGB);
 	}
 	
 	//CICLO DO JOGO "CEREBRO"
 	public void run() {
-		
+		init();
 		long lastTime = System.nanoTime();
 		final double amountOfTicks = 60.0;
 		double ns = 1000000000 / amountOfTicks;
@@ -104,6 +107,20 @@ public class Game extends Canvas implements Runnable {
 		System.exit(1);
 	}
 
+	//FUNCAO RESPONSÁVEL POR INCIAR O JOGO
+	private void init() {
+		background = new BufferedImage(Main.WIDTH, Main.HEIGHT,BufferedImage.TYPE_INT_RGB);
+		
+		BufferedImgeLoader loader = new BufferedImgeLoader();
+		try {
+			spritesheet =  loader.loadImage("spritesheet.png");
+		} catch (IOException e) {e.printStackTrace();}
+		
+		SpriteSheet ss = new SpriteSheet(spritesheet);
+		player = ss.grabImage(1, 1);
+		
+	}
+	
 	//FUNCAO RESPONSÁVEL POR ATUALIZAR O JOGO
 	private void tick() {
 		
@@ -122,6 +139,7 @@ public class Game extends Canvas implements Runnable {
 		
 		//DESENHO
 		g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
+		g.drawImage(player, 100, 100,this);
 		
 		g.dispose();
 		bs.show();
