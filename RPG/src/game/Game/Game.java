@@ -3,6 +3,7 @@ package game.Game;
 import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -111,12 +112,15 @@ public class Game extends Canvas implements Runnable {
 
 	//FUNCAO RESPONSÁVEL POR INCIAR O JOGO
 	private void init() {
+		requestFocus();
 		background = new BufferedImage(Main.WIDTH, Main.HEIGHT,BufferedImage.TYPE_INT_RGB);
 		
 		BufferedImgeLoader loader = new BufferedImgeLoader();
 		try {
 			spritesheet =  loader.loadImage("spritesheet.png");
 		} catch (IOException e) {e.printStackTrace();}
+		
+		addKeyListener(new GameKeyInput(this));
 		
 		player = new Player(this, 100, 100);
 	}
@@ -147,8 +151,37 @@ public class Game extends Canvas implements Runnable {
 		
 	}
 	
+	
+	//FUNCAO RESPONSAVEL POR RETORNAR A IMAGEM PRINCIPAL
 	public BufferedImage getSpriteSheet() {
 		return spritesheet;
 	}
 
+	//FUNCAO CHAMADA QUANDO UMA TECLA É PRESSIONADA
+	public void keyPressed(KeyEvent e) {
+		int key = e.getKeyCode();
+		
+		if(key == KeyEvent.VK_RIGHT)
+			player.moveX(3);
+		else if(key == KeyEvent.VK_LEFT)
+			player.moveX(-3);
+		else if(key == KeyEvent.VK_DOWN)
+			player.moveY(3);
+		else if(key == KeyEvent.VK_UP)
+			player.moveY(-3);
+	}
+	
+	//FUNCAO CHAMADA QUANDO UMA TECLA DEIXA DE SER PRESSIONADA
+	public void keyReleased(KeyEvent e) {
+		int key = e.getKeyCode();
+		
+		if(key == KeyEvent.VK_RIGHT)
+			player.moveX(0);
+		else if(key == KeyEvent.VK_LEFT)
+			player.moveX(0);
+		else if(key == KeyEvent.VK_DOWN)
+			player.moveY(0);
+		else if(key == KeyEvent.VK_UP)
+			player.moveY(0);
+	}
 }

@@ -11,7 +11,13 @@ public final class Player implements Entity {
 
 	private double x;
 	private double y;
+	
+	private double velx;
+	private double vely;
+	
 	private BufferedImage image;
+	
+
 	
 	public Player(Game game, double x, double y) {
 		this.x = x;
@@ -23,12 +29,21 @@ public final class Player implements Entity {
 
 	@Override
 	public void tick() {
-		x++;
+		x+=velx;
+		y+=vely;
 	}
 
 	@Override
 	public void render(Graphics g) {
 		g.drawImage(image, (int)x, (int)y, null);
+	}
+	
+	public void moveX(int x) {
+		this.velx = x;
+	}
+	
+	public void moveY(int y) {
+		this.vely = y;
 	}
 	
 }
