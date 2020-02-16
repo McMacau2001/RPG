@@ -82,4 +82,12 @@ public final class Player implements Entity {
 		this.vely = y;
 	}
 	
+	public double getX() {
+		return x;
+	}
+	
+	public double getY() {
+		return y;
+	}
+	
 }

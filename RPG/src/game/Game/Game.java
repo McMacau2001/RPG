@@ -92,6 +92,7 @@ public class Game extends Canvas implements Runnable {
 				frames = 0;
 			}
 			
+			
 		}
 		stop();
 	}
@@ -138,6 +139,9 @@ public class Game extends Canvas implements Runnable {
 	//FUNCAO RESPONSÁVEL POR ATUALIZAR O JOGO
 	private void tick() {
 		player.tick();
+		
+		//Update Camera
+		tm.setRendertiles((int)player.getX(), (int)player.getY());
 	}
 	
 	//FUNCAO RESPOSÁVEL POR DESENHAR
@@ -156,8 +160,8 @@ public class Game extends Canvas implements Runnable {
 		g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
 		
 		
-		Graphics2D g2d = (Graphics2D)g;
-		g2d.scale(2, 2);
+		//Graphics2D g2d = (Graphics2D)g;
+		//g2d.scale(2, 2);
 		
 		//map.render(g);
 		tm.render(g);
@@ -188,6 +192,7 @@ public class Game extends Canvas implements Runnable {
 			player.moveY(2);
 		else if(key == KeyEvent.VK_UP)
 			player.moveY(-2);
+		
 	}
 	
 	//FUNCAO CHAMADA QUANDO UMA TECLA DEIXA DE SER PRESSIONADA
