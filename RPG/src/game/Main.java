@@ -1,6 +1,8 @@
 package game;
 
 import game.Game.Game;
+import game.Map.TiledMap.TiledMap;
+import game.Map.TiledMap.TiledMapLoader;
 
 public class Main {
 

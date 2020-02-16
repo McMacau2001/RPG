@@ -14,4 +14,16 @@ public class Tile {
 		this.y = y;
 	}
 	
+	public int getImage() {
+		return image;
+	}
+	
+	public int getX() {
+		return x;
+	}
+	
+	public int getY() {
+		return y;
+	}
+	
 }

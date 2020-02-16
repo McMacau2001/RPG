@@ -12,11 +12,12 @@ public class TiledMap {
 	
 	private String orientation;
 	
-	private List<TileSets> tilesets;
-	private List<TileLayer> layers;
+	private List<TileSet> tilesets;
+	private List<TiledLayer> layers;
 	
-	public TiledMap() {
-
+	//INICIA O OBJETO 
+	public void init() {
+		tilesets.forEach(x-> x.init());
 	}
 
 	
@@ -40,11 +41,12 @@ public class TiledMap {
 		return tilewidth;
 	}
 	
-	public List<TileSets> getTilesets() {
+	public List<TileSet> getTilesets() {
 		return tilesets;
 	}
 	
-	public List<TileLayer> getLayers() {
+	public List<TiledLayer> getLayers() {
 		return layers;
 	}
+	
 }

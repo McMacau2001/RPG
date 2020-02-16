@@ -3,6 +3,7 @@ package game.Game;
 import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
@@ -13,6 +14,9 @@ import javax.swing.JFrame;
 import game.Main;
 import game.Entities.Player.Player;
 import game.Images.ImageLoader;
+import game.Map.TileMap;
+import game.Map.TiledMap.TiledMap;
+import game.Map.TiledMap.TiledMapLoader;
 
 
 public class Game extends Canvas implements Runnable {
@@ -28,6 +32,8 @@ public class Game extends Canvas implements Runnable {
 	private BufferedImage spritesheet;
 	
 	private Player player;
+	private TiledMap map;
+	private TileMap tm;
 	
 	public Game() {
 
@@ -45,6 +51,11 @@ public class Game extends Canvas implements Runnable {
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
+		
+		TiledMapLoader loader = new TiledMapLoader();
+		map = loader.loadTiledMap("map.json");
+		
+		tm = new TileMap(map);
 		
 	}
 	
@@ -141,8 +152,15 @@ public class Game extends Canvas implements Runnable {
 		Graphics g = bs.getDrawGraphics();
 		
 		//DESENHO
-
+		
 		g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
+		
+		
+		Graphics2D g2d = (Graphics2D)g;
+		g2d.scale(2, 2);
+		
+		//map.render(g);
+		tm.render(g);
 		player.render(g);
 		
 		//

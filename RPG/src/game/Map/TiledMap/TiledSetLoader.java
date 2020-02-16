@@ -7,20 +7,17 @@ import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
 
-public class TiledMapLoader {
+public class TiledSetLoader {
 
-	private TiledMap tiledmap; 
+	private TiledSetSource tiledsource; 
 	
-	public TiledMap loadTiledMap(String path) {
+	public TiledSetSource loadTiledMap(String path) {
 		path = (System.getProperty("user.dir")+"/resources/rooms/"+path).replace("/", "\\");
 		
 		Gson gson = new Gson();
-		try {
-			tiledmap = gson.fromJson(new FileReader(path), TiledMap.class);
-			tiledmap.init();
+		try {tiledsource = gson.fromJson(new FileReader(path), TiledSetSource.class);
  		} catch (JsonSyntaxException | JsonIOException | FileNotFoundException e) {e.printStackTrace();}
-
 		
-		return tiledmap;
+		return tiledsource;
 	}
 }

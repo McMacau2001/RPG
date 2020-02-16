@@ -66,7 +66,7 @@ public final class Player implements Entity {
 	@Override
 	public void render(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
-		g2d.scale(1.3, 1.3);
+		//g2d.scale(1.3, 1.3);
 		animation.drawAnimation(g, (int)x, (int)y, 0);
 	}
 	

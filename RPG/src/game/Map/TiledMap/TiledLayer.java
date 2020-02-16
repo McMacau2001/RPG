@@ -1,6 +1,6 @@
 package game.Map.TiledMap;
 
-public class TileLayer {
+public class TiledLayer {
 
 	private int id;
 	private String name;
@@ -16,7 +16,7 @@ public class TileLayer {
 	
 	private boolean visible;
 	
-	public TileLayer() {
+	public TiledLayer() {
 		// TODO Auto-generated constructor stub
 	}
 	
