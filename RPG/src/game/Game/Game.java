@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 
 import game.Main;
 import game.Entities.Player.Player;
-import game.Images.BufferedImageLoader;
+import game.Images.ImageLoader;
 
 
 public class Game extends Canvas implements Runnable {
@@ -115,7 +115,7 @@ public class Game extends Canvas implements Runnable {
 		
 		background = new BufferedImage(Main.WIDTH, Main.HEIGHT,BufferedImage.TYPE_INT_RGB);
 		
-		BufferedImageLoader loader = new BufferedImageLoader();
+		ImageLoader loader = new ImageLoader();
 		spritesheet =  loader.loadImage("spritesheet.png");
 		
 		addKeyListener(new GameKeyInput(this));

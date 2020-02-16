@@ -7,7 +7,7 @@ import java.io.IOException;
 
 import game.Entities.Entity;
 import game.Game.Game;
-import game.Images.BufferedImageLoader;
+import game.Images.ImageLoader;
 import game.Images.SpriteImage;
 import game.Images.SpriteAnimation;
 import game.Images.SpriteSheet;
@@ -32,7 +32,7 @@ public final class Player implements Entity {
 		this.y = y;
 		
 		//CARREGAR OS SPRITES
-		BufferedImageLoader loader = new BufferedImageLoader();
+		ImageLoader loader = new ImageLoader();
 		
 		right = new SpriteImage(loader.loadImage("player/walking_right.png"),3);
 		left = new SpriteImage(loader.loadImage("player/walking_left.png"),3);
@@ -66,7 +66,7 @@ public final class Player implements Entity {
 	@Override
 	public void render(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
-		g2d.scale(2, 2);
+		g2d.scale(1.3, 1.3);
 		animation.drawAnimation(g, (int)x, (int)y, 0);
 	}
 	

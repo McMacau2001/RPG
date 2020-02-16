@@ -6,12 +6,12 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class BufferedImageLoader {
+public class ImageLoader {
 
 	private BufferedImage image;
 	
 	public BufferedImage loadImage(String path) {
-		path = (System.getProperty("user.dir")+"/resources/"+path).replace("/", "\\");
+		path = (System.getProperty("user.dir")+"/resources/images/"+path).replace("/", "\\");
 		
 		try {image = ImageIO.read(new File(path));
 		} catch (IOException e) {e.printStackTrace();}
