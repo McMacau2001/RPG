@@ -7,12 +7,16 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
+import game.Main;
+import game.Game.Game;
 import game.Images.SpriteSheet;
 import game.Map.Render.QuadTree;
 import game.Map.TiledMap.TiledMap;
 
 public class TileMap {
 
+	private Game game;
+	
 	private TiledMap map;
 	private QuadTree qtree;
 	
@@ -21,10 +25,11 @@ public class TileMap {
 	
 	private List<Tile> rendertiles = new ArrayList<Tile>();
 	
-	public TileMap(TiledMap map) {
+	public TileMap(Game game, TiledMap map) {
+		this.game = game;
 		this.map = map;
 		
-		this.qtree = new QuadTree(new Rectangle(0,0,map.getWidth()*map.getTilewidth(),map.getHeight()*map.getTileheight()), 6);
+		this.qtree = new QuadTree(new Rectangle(0,0,map.getWidth()*map.getTilewidth(),map.getHeight()*map.getTileheight()), 20);
 		
 		//Load Layers
 		map.getLayers().forEach(a-> {
@@ -66,13 +71,21 @@ public class TileMap {
 	}
 	
 	public void setRendertiles(int x, int y) {
-		rendertiles = qtree.query(new Rectangle(x-2*map.getTilewidth(), y-2*map.getTileheight(), map.getTilewidth()*7, map.getTileheight()*7), null);
+		rendertiles = qtree.query(new Rectangle(
+				(int)game.getGameCamera().getxOffset() - 25, 
+				(int)game.getGameCamera().getyOffset() - 25, 
+				(int)((Main.WIDTH * Main.SCALE) / Main.ZOOM) + 50, 
+				(int)((Main.HEIGHT * Main.SCALE) / Main.ZOOM) + 50), null);
 	}
 	
 	public void render(Graphics g) {
 		rendertiles.forEach(t-> {
 			if(t.getImage()!=0)
-				g.drawImage(images.get(t.getImage()-1), t.getX()*map.getTilewidth(), t.getY()*map.getTileheight(), map.getTilewidth(), map.getTileheight(), null);
+				g.drawImage(images.get(t.getImage()-1), 
+						(int)(t.getX()*map.getTilewidth() - game.getGameCamera().getxOffset()), 
+						(int)(t.getY()*map.getTileheight() - game.getGameCamera().getyOffset()), 
+						map.getTilewidth(), 
+						map.getTileheight(), null);
 		});
 		
 	}

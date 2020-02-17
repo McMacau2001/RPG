@@ -15,6 +15,7 @@ import game.Main;
 import game.Entities.Player.Player;
 import game.Images.ImageLoader;
 import game.Map.TileMap;
+import game.Map.Camera.Camera;
 import game.Map.TiledMap.TiledMap;
 import game.Map.TiledMap.TiledMapLoader;
 
@@ -30,6 +31,8 @@ public class Game extends Canvas implements Runnable {
 		
 	private BufferedImage background;
 	private BufferedImage spritesheet;
+	
+	private Camera camera;
 	
 	private Player player;
 	private TiledMap map;
@@ -55,7 +58,7 @@ public class Game extends Canvas implements Runnable {
 		TiledMapLoader loader = new TiledMapLoader();
 		map = loader.loadTiledMap("map.json");
 		
-		tm = new TileMap(map);
+		tm = new TileMap(this, map);
 		
 	}
 	
@@ -130,6 +133,8 @@ public class Game extends Canvas implements Runnable {
 		ImageLoader loader = new ImageLoader();
 		spritesheet =  loader.loadImage("spritesheet.png");
 		
+		camera = new Camera(this, 0, 0);
+		
 		addKeyListener(new GameKeyInput(this));
 		
 		player = new Player(this, 200, 100);
@@ -139,7 +144,7 @@ public class Game extends Canvas implements Runnable {
 	//FUNCAO RESPONSÁVEL POR ATUALIZAR O JOGO
 	private void tick() {
 		player.tick();
-		
+
 		//Update Camera
 		tm.setRendertiles((int)player.getX(), (int)player.getY());
 	}
@@ -156,17 +161,16 @@ public class Game extends Canvas implements Runnable {
 		Graphics g = bs.getDrawGraphics();
 		
 		//DESENHO
+
+		g.drawImage(background, 0, 0, getWidth()+200, getHeight()+200, this);
 		
-		g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
 		
-		
-		//Graphics2D g2d = (Graphics2D)g;
-		//g2d.scale(2, 2);
+		Graphics2D g2d = (Graphics2D)g;
+		g2d.scale(Main.ZOOM, Main.ZOOM);
 		
 		//map.render(g);
 		tm.render(g);
 		player.render(g);
-		
 		//
 	
 		g.dispose();
@@ -207,5 +211,9 @@ public class Game extends Canvas implements Runnable {
 			player.moveY(0);
 		else if(key == KeyEvent.VK_UP)
 			player.moveY(0);
+	}
+	
+	public Camera getGameCamera() {
+		return camera;
 	}
 }

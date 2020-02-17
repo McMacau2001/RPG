@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import game.Entities.Entity;
+import game.Entities.Entity;
 import game.Game.Game;
 import game.Images.ImageLoader;
 import game.Images.SpriteImage;
@@ -14,6 +15,8 @@ import game.Images.SpriteSheet;
 
 public final class Player implements Entity {
 
+	private Game game;
+	
 	private double x;
 	private double y;
 	
@@ -28,6 +31,8 @@ public final class Player implements Entity {
 	private SpriteAnimation animation;
 
 	public Player(Game game, double x, double y) {
+		this.game = game;
+		
 		this.x = x;
 		this.y = y;
 		
@@ -48,6 +53,7 @@ public final class Player implements Entity {
 		x+=velx;
 		y+=vely;
 		
+		game.getGameCamera().centerOnLocation((int)x,(int) y);
 		animation.runAnimation();
 		
 		//Update Animations
@@ -65,9 +71,7 @@ public final class Player implements Entity {
 
 	@Override
 	public void render(Graphics g) {
-		Graphics2D g2d = (Graphics2D)g;
-		//g2d.scale(1.3, 1.3);
-		animation.drawAnimation(g, (int)x, (int)y, 0);
+		animation.drawAnimation(g, (int)x- game.getGameCamera().getxOffset(), (int)y- game.getGameCamera().getyOffset(), 0);
 	}
 	
 	public void moveX(int x) {
