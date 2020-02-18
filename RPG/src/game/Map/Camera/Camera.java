@@ -1,19 +1,17 @@
 package game.Map.Camera;
 
 import game.Main;
-import game.Entities.Entity;
-import game.Entities.Player.Player;
 import game.Game.Game;
 
 public class Camera {
 	
-	private Game game;
+	//private Game game;
 	
 	private float xOffset;
 	private float yOffset;
 	
 	public Camera(Game game, float xOffset, float yOffset) {
-		this.game = game;
+		//this.game = game;
 		this.xOffset = xOffset;
 		this.yOffset = yOffset;
 	}

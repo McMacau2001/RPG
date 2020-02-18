@@ -1,17 +1,12 @@
 package game.Entities.Player;
 
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 
-import game.Entities.Entity;
 import game.Entities.Entity;
 import game.Game.Game;
 import game.Images.ImageLoader;
 import game.Images.SpriteImage;
 import game.Images.SpriteAnimation;
-import game.Images.SpriteSheet;
 
 public final class Player implements Entity {
 

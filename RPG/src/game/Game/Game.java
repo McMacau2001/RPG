@@ -7,7 +7,6 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 import javax.swing.JFrame;
 
@@ -37,6 +36,7 @@ public class Game extends Canvas implements Runnable {
 	private Player player;
 	private TiledMap map;
 	private TileMap tm;
+
 	
 	public Game() {
 
@@ -162,8 +162,7 @@ public class Game extends Canvas implements Runnable {
 		
 		//DESENHO
 
-		g.drawImage(background, 0, 0, getWidth()+200, getHeight()+200, this);
-		
+		g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
 		
 		Graphics2D g2d = (Graphics2D)g;
 		g2d.scale(Main.ZOOM, Main.ZOOM);

@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 
 public class TiledSetSource {
 
-	private int columns;
+	//private int columns;
 	
 	private int tilewidth;
 	private int tileheight;

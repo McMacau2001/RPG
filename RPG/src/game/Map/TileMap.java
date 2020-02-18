@@ -1,6 +1,5 @@
 package game.Map;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -20,7 +19,7 @@ public class TileMap {
 	private TiledMap map;
 	private QuadTree qtree;
 	
-	private List<Tile> tiles = new ArrayList<Tile>();
+
 	private List<BufferedImage> images = new ArrayList<BufferedImage>();
 	
 	private List<Tile> rendertiles = new ArrayList<Tile>();
@@ -44,10 +43,10 @@ public class TileMap {
 					y++;
 				}
 				
-				Tile t = new Tile(data[d], x, y, map.getTilewidth(), map.getTileheight());
-				//tiles.add(t);
+				if(data[d] != 0) 
+					qtree.insert(new Tile(data[d], x, y, map.getTilewidth(), map.getTileheight()));
 				
-				qtree.insert(t);
+				
 				x++;
 				
 			}
@@ -58,6 +57,7 @@ public class TileMap {
 		map.getTilesets().forEach(a-> {
 			SpriteSheet ss = new SpriteSheet(a.getTiledsource().getImage());
 			
+			@SuppressWarnings("unused")
 			int index = 0;
 			for(int row = 0 ;  row < a.getTiledsource().getRows(); row++) {
 				for(int col = 0 ;  col < a.getTiledsource().getColumns(); col++) {

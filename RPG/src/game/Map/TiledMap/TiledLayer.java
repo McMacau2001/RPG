@@ -4,22 +4,17 @@ public class TiledLayer {
 
 	private int id;
 	private String name;
-	private String type;
+	//private String type;
 	
 	private int[] data;
 	
-	private int x;
-	private int y;
+	//private int x;
+	//private int y;
 	
-	private int width;
-	private int height;
+	//private int width;
+	//private int height;
 	
-	private boolean visible;
-	
-	public TiledLayer() {
-		// TODO Auto-generated constructor stub
-	}
-	
+	//private boolean visible;
 	
 	public int getId() {
 		return id;

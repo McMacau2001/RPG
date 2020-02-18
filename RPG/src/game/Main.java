@@ -1,15 +1,14 @@
 package game;
 
 import game.Game.Game;
-import game.Map.TiledMap.TiledMap;
-import game.Map.TiledMap.TiledMapLoader;
+
 
 public class Main {
 
 	public static final int WIDTH = 420;
 	public static final int HEIGHT = WIDTH / 12 *9;
 	public static final int SCALE = 2;
-	public static final float ZOOM = 2f;
+	public static final float ZOOM = 1f;
 	public static final String TITLE = "RPG Game";
 	
 	public static final int SPRITESIZE = 64;
